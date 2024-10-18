@@ -1,24 +1,32 @@
-import { useEffect, useState } from "react"
-import { Result } from "../interfaces/Rick_and_Morty";
-import { getData } from "../services/getData";
+import { useEffect,useState } from "react"
+import { Info, RickAndMorty } from "../interfaces/Rick_and_Morty";
 
-interface useFetchState {
-    character: Result[],
+type useFetchState =  {
+    ApiState: RickAndMorty['results'],
+    ApiStatePage: Info['pages']
 }
 
 export function useFetch() {
 
-    const [character, setCharacter] = useState<useFetchState['character']>([]);
-    useEffect(()=>{
-        GetAllData();
-    },[])
+    const [data, setData] = useState<useFetchState['ApiState']>([]);
+    const [page, setPage] = useState<useFetchState['ApiStatePage']>(1);
 
-    const GetAllData = async () =>{
-        const data = await getData();
-        setCharacter(data.results);
-    }
+    useEffect(() => {
+        async function GetData(){
+            try {
+                const response = await fetch(`https://rickandmortyapi.com/api/character?page=${page}`)
+                const data = await response.json();
+                setData(data.results);
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        GetData();
+    }, [page])
 
     return {
-        character,
+        data,
+        page,
+        setPage
     }
 }

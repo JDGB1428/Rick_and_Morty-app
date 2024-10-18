@@ -1,14 +1,14 @@
-import { Result } from "../interfaces/Rick_and_Morty"
+import { RickAndMorty } from "../interfaces/Rick_and_Morty"
 
 interface ListCharacterProps {
-    character: Result[]
+    data: RickAndMorty['results']
 }
 
-const ListCharacter = ({ character }: ListCharacterProps) => {
+const ListCharacter = ({ data }: ListCharacterProps) => {
     return (
-        <div className="flex flex-wrap gap-5 justify-center">
+        <div className="flex flex-wrap justify-center gap-5">
             {
-                character.map(item => (
+                data.map(item => (
                     <div key={item.id} className="rounded-lg shadow-md">
                         <img src={item.image} alt="" />
                         <div className="p-5">

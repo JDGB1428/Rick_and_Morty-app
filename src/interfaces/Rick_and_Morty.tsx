@@ -1,4 +1,4 @@
-export interface MenuItem {
+export interface RickAndMorty {
     info:    Info;
     results: Result[];
 }

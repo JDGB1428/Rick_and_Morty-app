@@ -1,10 +1,15 @@
 import ListCharacter from '../components/ListCharacter';
+import Pagination from '../components/Pagination';
 import { useFetch } from '../hooks/useFetch'
 
 const CharacterPage = () => {
-    const{character} = useFetch();
+    const{data, page, setPage} = useFetch();
     return (
-        <ListCharacter character={character}></ListCharacter>
+        <>
+            <Pagination page={page} setPage={setPage}/>
+            <ListCharacter data={data}></ListCharacter>
+            <Pagination page={page} setPage={setPage}/>
+        </>
     )
 }
 

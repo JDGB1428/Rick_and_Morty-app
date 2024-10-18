@@ -1,6 +1,6 @@
 import { createBrowserRouter, Navigate } from "react-router-dom"
 import Layouts from "../layouts/Layouts"
-import Character from "../pages/CharacterPage"
+import CharacterPage from "../pages/CharacterPage"
 
 const router = createBrowserRouter([
     {
@@ -8,9 +8,9 @@ const router = createBrowserRouter([
         element: <Layouts/>,
         children:[{
             path: '/',
-            element: <Character/>
+            element: <CharacterPage/>
         },{
-            path: '/planets',
+            path: '/location',
         },{
             path: '/character',
         }]
